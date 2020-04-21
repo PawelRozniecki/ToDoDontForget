@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">ToDo - Don\'t Forget</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string-array name="categories">
+        <item>ToDo</item>
+        <item>School</item>
+        <item>Shopping</item>
+        <item>Work</item>
+
+    </string-array>
+
+
+    <string name="title_activity_manage_list_item">ManageListItem</string>
+</resources>

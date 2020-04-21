@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:gravity="center_horizontal"
+    >
+
+
+        <EditText
+            android:id="@+id/enterText"
+            android:layout_width="match_parent"
+
+            android:layout_height="60dp"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:hint="Enter task title"
+            android:inputType="text"
+            android:textColor="@color/textSecondary"
+            />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/border"
+        android:gravity="center"
+        android:hint="Enter description"
+        android:inputType="text"
+
+        android:textColor="@color/textSecondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterText" />
+
+    <DatePicker
+        android:id="@+id/datepicker"
+        android:layout_width="386dp"
+        android:layout_height="146dp"
+        android:layout_marginBottom="272dp"
+        android:background="@drawable/border"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="@color/colorAccent"
+        android:tint="@color/colorPrimary"
+        android:text="Add"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datepicker"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_confirm" />
+
+    <Spinner
+        android:id="@+id/dialog_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datepicker"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--    <EditText-->
+<!--        android:id="@+id/enterText"-->
+<!--        android:layout_width="275dp"-->
+<!--        android:layout_height="53dp"-->
+<!--        android:background="@null"-->
+<!--        android:gravity="center"-->
+<!--        android:hint="e.g Buy Milk in Biedronka"-->
+<!--        android:inputType="text"-->
+<!--        android:textColor="@color/textSecondary"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.031"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.024" />-->
+
+<!--    <ImageView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+
+<!--    <Button-->
+<!--        android:id="@+id/button"-->
+
+<!--        android:layout_width="41dp"-->
+<!--        android:layout_height="43dp"-->
+<!--        android:text="+"-->
+
+<!--        android:textColor="#999999"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/enterText"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/enterText"-->
+<!--        tools:layout_editor_absoluteX="309dp" />-->
+
+<!--    <DatePicker-->
+<!--        android:id="@+id/datepicker"-->
+<!--        android:layout_width="311dp"-->
+<!--        android:layout_height="149dp"-->
+<!--        android:calendarViewShown="false"-->
+<!--        android:datePickerMode="spinner"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.37"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/button"-->
+<!--        app:layout_constraintVertical_bias="0.152" />-->
+
+<!--    <Spinner-->
+<!--        android:id="@+id/spinner"-->
+<!--        android:layout_width="159dp"-->
+<!--        android:spinnerMode="dropdown"-->
+<!--        android:layout_height="29dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.134"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.138" />-->
+
+

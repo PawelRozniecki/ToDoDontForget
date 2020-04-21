@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#ffffff</color>
+    <color name="colorAccent">#0984e3</color>
+    <color name="textSecondary">#2f3542</color>
+    <color name="catDefault">#45aaf2</color>
+    <color name="catSchool">#f7b731</color>
+    <color name="catShopping">#fc5c65</color>
+    <color name="catWork">#26de81</color>
+
+</resources>
