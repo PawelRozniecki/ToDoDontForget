@@ -26,8 +26,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 " TEXT NOT NULL, " + Database.DatabaseEntry.DATE_COL + " TEXT, "+ Database.DatabaseEntry.STATUS_COL + " INTEGER  "+
         ");";
         db.execSQL(CREATE);
-
-
     }
 
     @Override
@@ -43,10 +41,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     //Creates a new task
-    public boolean addTask(String item, String date, String category, int status) {
+    public boolean addTask(String item, String content, String date, String category, int status) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(Database.DatabaseEntry.TASK_COL, item);
+        contentValues.put(Database.DatabaseEntry.TASK_CONTENT_COL,content);
         contentValues.put(Database.DatabaseEntry.CATEGORY_COL, category);
         contentValues.put(Database.DatabaseEntry.DATE_COL, date);
         contentValues.put(Database.DatabaseEntry.STATUS_COL, status);
@@ -59,7 +58,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
-
 
     //fetches all the rows from the table
     public Cursor getData() {
@@ -97,6 +95,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void updateTaskContent(String name, int id ){
         SQLiteDatabase db = this.getWritableDatabase();
         String sql =   "UPDATE " + Database.DatabaseEntry.TABLE_NAME + " SET " + Database.DatabaseEntry.TASK_CONTENT_COL +
+                "='" + name +"'" + " WHERE " + Database.DatabaseEntry.ID_COL + "='"+ id + "'";
+        db.execSQL(sql);
+    }
+    public void updateStatus(String name, int id ){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql =   "UPDATE " + Database.DatabaseEntry.TABLE_NAME + " SET " + Database.DatabaseEntry.STATUS_COL +
                 "='" + name +"'" + " WHERE " + Database.DatabaseEntry.ID_COL + "='"+ id + "'";
         db.execSQL(sql);
     }

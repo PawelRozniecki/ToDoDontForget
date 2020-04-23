@@ -9,7 +9,7 @@ public class Database {
 
 
     public static final String DB_NAME = "com.github.pawelrozniecki.todo_dontforget.database.db";
-    public static final int DB_VERSION = 17;
+    public static final int DB_VERSION = 18;
 
     public class DatabaseEntry implements BaseColumns {
         public static final String TABLE_NAME = "task_table";

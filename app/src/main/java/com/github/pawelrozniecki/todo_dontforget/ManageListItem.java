@@ -32,7 +32,6 @@ public class ManageListItem extends AppCompatActivity {
 
         databaseHelper = new DatabaseHelper(this);
 
-        btn = findViewById(R.id.button2);
         editText = findViewById(R.id.editTask);
         fab = findViewById(R.id.fab);
         parent = findViewById(R.id.manage_layout);
@@ -62,12 +61,6 @@ public class ManageListItem extends AppCompatActivity {
                 Snackbar.make(parent, "Task saved", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
-            }
-        });
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editText.append("\n" + "\u2022");
             }
         });
     }

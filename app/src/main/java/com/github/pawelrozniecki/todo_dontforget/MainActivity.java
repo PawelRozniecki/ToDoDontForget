@@ -50,25 +50,22 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
 
     //Arrays holding all the task data temporarily
-    private ArrayList <String> itemArray,dateArray, categoryArray;
-    private RecyclerViewerAdapter adapter;
-    private EditText editText;
+    private ArrayList <String> itemArray, dateArray, categoryArray, statusArray;
+
+    private EditText editText, descText;
 //    private Button button;
     private DatePicker datePicker;
-    private TextView list_item;
     private Toolbar toolbar;
     private DatabaseHelper helper;
     private RecyclerView recyclerView;
-    View parent;
-    ImageView imageView;
-    Spinner spinner, dialogSpinner;
-    StringBuilder sb;
-
-    private String datePattern = "dd-MM-yyyy";
-    private Dialog dialog;
+    private RecyclerViewerAdapter adapter;
+    private View parent;
+    private Spinner  dialogSpinner;
+    private StringBuilder sb;
     private FloatingActionButton fab;
-    private SQLiteDatabase db;
-    Button button;
+    private Button button;
+    private Dialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,9 +73,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         dialog = new Dialog(this);
-        helper = new DatabaseHelper(this);
         dialog.setContentView(R.layout.dialog_window);
-
+        helper = new DatabaseHelper(this);
 
         //finding views
 
@@ -86,15 +82,17 @@ public class MainActivity extends AppCompatActivity {
         datePicker = dialog.findViewById(R.id.datepicker);
         dialogSpinner = dialog.findViewById(R.id.dialog_spinner);
         editText = dialog.findViewById(R.id.enterText);
+        descText = dialog.findViewById(R.id.descText);
         fab = findViewById(R.id.fab);
-        list_item = findViewById(R.id.list_item);
         parent = findViewById(R.id.parent_layout);
         recyclerView = findViewById(R.id.recycle_viewer);
         toolbar = findViewById(R.id.toolbar);
 
 
+        //sets the minimum date for current System date, User is unable to set Past dates as deadline
         datePicker.setMinDate(System.currentTimeMillis()-1000);
-        //load the data from database
+
+        //load the data from database on start up
         populateData();
 
         //setting spinner contents
@@ -115,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
+                //extracting day,month, year values from the date picker
                 int day = datePicker.getDayOfMonth();
                 int month = datePicker.getMonth();
                 int year = datePicker.getYear();
@@ -137,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
 
     }
 
@@ -174,30 +171,12 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-
-//    private void filterCategories(String category){
-//        itemArray = new ArrayList<>();
-//        dateArray = new ArrayList<>();
-//        Cursor data = helper.getCategoriesData(category);
-//        while(data.moveToNext()){
-//
-//            itemArray.add(data.getString(1 ));
-//            dateArray.add(data.getString(4));
-//        }
-//        adapter = new RecyclerViewerAdapter(itemArray, dateArray,this);
-//        recyclerView.setAdapter(adapter);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        new ItemTouchHelper(itemTouchHelper).attachToRecyclerView(recyclerView);
-//
-//    }
     private void populateData(){
 
         itemArray = new ArrayList<>();
         dateArray = new ArrayList<>();
         categoryArray = new ArrayList<>();
-        imageView =  findViewById(R.id.icon);
-
+        statusArray = new ArrayList<>();
         Cursor data = helper.getData();
         //iterate through all the rows
         while(data.moveToNext()){
@@ -205,19 +184,25 @@ public class MainActivity extends AppCompatActivity {
             itemArray.add(data.getString(1 ));
             dateArray.add(data.getString(4));
             categoryArray.add(data.getString(3));
+            statusArray.add(data.getString(5));
 
         }
-        adapter = new RecyclerViewerAdapter(itemArray, dateArray,categoryArray,this);
+
+
+        adapter = new RecyclerViewerAdapter(itemArray, dateArray,categoryArray,statusArray,this);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         new ItemTouchHelper(itemTouchHelper).attachToRecyclerView(recyclerView);
     }
+
     private void addNote(String date, String category, int status){
 
         if(editText.getText().length()>0) {
             String note = editText.getText().toString();
-            boolean insertTask = helper.addTask(note, date,category,status);
+            String desc = descText.getText().toString();
+
+            boolean insertTask = helper.addTask(note, desc, date,category,status);
             if(insertTask ){
 
                 Snackbar.make(parent, "Task added", Snackbar.LENGTH_LONG)
@@ -247,8 +232,12 @@ public class MainActivity extends AppCompatActivity {
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
 
 
+
+
+
                 String name = itemArray.get(viewHolder.getAdapterPosition());
                 Cursor data = helper.getDataID(name);
+
 
                 int id = -1;
                 while(data.moveToNext()){
@@ -266,10 +255,6 @@ public class MainActivity extends AppCompatActivity {
             itemArray.remove(viewHolder.getAdapterPosition());
             adapter.notifyDataSetChanged();
             populateData();
-
-
-
-
 
         }
     };
